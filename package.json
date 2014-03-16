@@ -1,0 +1,34 @@
+{
+  "name": "chai-bookshelf",
+  "version": "0.0.1",
+  "description": "Chai assertions for bookshelf-based models",
+  "main": "chai-bookshelf.js",
+  "scripts": {
+    "test": "mocha --check-leaks -R list --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elliotf/chai-bookshelf.git"
+  },
+  "keywords": [
+    "chai",
+    "bookshelf",
+    "testing",
+    "tests",
+    "assertions",
+    "assert"
+  ],
+  "author": "Elliot Foster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elliotf/chai-bookshelf/issues"
+  },
+  "homepage": "https://github.com/elliotf/chai-bookshelf",
+  "devDependencies": {
+    "mocha": "^1.18.0",
+    "chai": "^1.9.0",
+    "bookshelf": "^0.6.8",
+    "chicken": "0.0.1",
+    "jshint": "^2.4.4"
+  }
+}
