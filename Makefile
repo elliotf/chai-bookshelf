@@ -16,7 +16,7 @@ release: lint
 test: lint
 	bash -c "export NODE_ENV='test'; time ./node_modules/.bin/mocha --check-leaks --recursive -R list" # use bash for human-readable timing
 
-testwatch: test
-	./node_modules/.bin/chicken -c 'make test' .
+testwatch:
+	bash -c "make test; ./node_modules/.bin/chicken -c 'make test' ."
 
 .PHONY: install clean release test testwatch
