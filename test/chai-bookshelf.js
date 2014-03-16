@@ -1,6 +1,6 @@
 var chai      = require('chai')
   , expect    = chai.expect
-  , subject   = require('../chai-bookshelf')
+  , subject   = require('../')
   , bookshelf = require('bookshelf')
 ;
 
