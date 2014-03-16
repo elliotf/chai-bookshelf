@@ -11,6 +11,8 @@ var chai      = require('chai')
   , Transcript
 ;
 
+chai.Assertion.includeStack = true;
+
 describe("chai-bookshelf", function() {
   before(function() {
     chai.use(function (chai, utils) {
