@@ -43,19 +43,12 @@ describe("chai-bookshelf", function() {
   });
 
   beforeEach(function() {
-    this.c = {}; // context that is rebuild between tests
-
     db = Bookshelf.initialize({
       client: 'sqlite'
       , connection: {
         filename: ':memory:'
       }
     });
-
-    // student hasOne transcript
-    // school  hasMany students
-    // class belongsTo school
-    // student belongsToMany classes
 
     Class = db.Model.extend({
       tableName: 'classes'
