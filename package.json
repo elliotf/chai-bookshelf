@@ -28,7 +28,12 @@
     "mocha": "^1.18.0",
     "chai": "^1.9.0",
     "bookshelf": "^0.6.8",
-    "chicken": "0.0.1",
-    "jshint": "^2.4.4"
+    "jshint": "^2.4.4",
+    "chicken-little": "^0.1.2",
+    "sqlite3": "^2.2.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "inflection": "^1.3.5"
   }
 }
