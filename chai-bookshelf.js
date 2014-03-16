@@ -3,7 +3,9 @@ var _          = require('lodash')
 ;
 
 module.exports = function(chai, utils) {
-  function validateRelation(expectedType, subject, expected) {
+  function validateRelation(expectedType, expected) {
+    var subject = this._obj;
+
     // make sure we're dealing with backbone models
     this.assert(
       'function' === typeof(subject.forge)
@@ -41,8 +43,6 @@ module.exports = function(chai, utils) {
   }
 
   chai.Assertion.addMethod('haveOne', function(expected) {
-    var subject = this._obj;
-
-    validateRelation.call(this, 'hasOne', subject, expected);
+    validateRelation.call(this, 'hasOne', expected);
   });
 };
