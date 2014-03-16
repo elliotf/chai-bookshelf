@@ -62,6 +62,9 @@ describe("chai-bookshelf", function() {
       , school: function() {
         return this.belongsTo(School);
       }
+      , student: function() {
+        return this.belongsToMany(Student);
+      }
     });
 
     Transcript = db.Model.extend({
@@ -77,6 +80,9 @@ describe("chai-bookshelf", function() {
 
     School = db.Model.extend({
       tableName: 'schools'
+      , student: function() {
+        return this.hasMany(Student);
+      }
     });
 
     Slacker = db.Model.extend({});
@@ -114,7 +120,7 @@ describe("chai-bookshelf", function() {
     });
 
     context("when related class does not have a table defined", function() {
-      it("raises an error", function() {
+      it("raises a helpful error", function() {
         expect(function(){
           expect(Class).to.haveOne(Slacker);
         }).to.fail("relationship expectation does not have a tableName");
@@ -125,6 +131,150 @@ describe("chai-bookshelf", function() {
       it("raises an error", function() {
         expect(function(){
           expect('not a bookshelf model class').to.haveOne(School);
+        }).to.fail("relationship subject should be a bookshelf model class");
+      });
+    });
+  });
+
+  describe(".haveMany", function() {
+    context("when given two related models", function() {
+      it("passes", function() {
+        expect(School).to.haveMany(Student);
+      });
+    });
+
+    context("when given two unrelated models", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Transcript).to.haveMany(Class);
+        }).to.fail("model classes have no relation");
+      });
+    });
+
+    context("when given two models with a non-hasMany relation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Class).to.haveMany(School);
+        }).to.fail("expected a 'hasMany' relationship instead of 'belongsTo'");
+      });
+    });
+
+    context("when given a class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Class).to.haveMany('not a bookshelf model class');
+        }).to.fail("relationship expectation should be a bookshelf model class");
+      });
+    });
+
+    context("when related class does not have a table defined", function() {
+      it("raises a helpful error", function() {
+        expect(function(){
+          expect(Class).to.haveMany(Slacker);
+        }).to.fail("relationship expectation does not have a tableName");
+      });
+    });
+
+    context("when given a non-class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect('not a bookshelf model class').to.haveMany(School);
+        }).to.fail("relationship subject should be a bookshelf model class");
+      });
+    });
+  });
+
+  describe(".belongTo", function() {
+    context("when given two related models", function() {
+      it("passes", function() {
+        expect(Class).to.belongTo(School);
+      });
+    });
+
+    context("when given two unrelated models", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Transcript).to.belongTo(Class);
+        }).to.fail("model classes have no relation");
+      });
+    });
+
+    context("when given two models with a non-hasMany relation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Student).to.belongTo(Transcript);
+        }).to.fail("expected a 'belongsTo' relationship instead of 'hasOne'");
+      });
+    });
+
+    context("when given a class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Class).to.belongTo('not a bookshelf model class');
+        }).to.fail("relationship expectation should be a bookshelf model class");
+      });
+    });
+
+    context("when related class does not have a table defined", function() {
+      it("raises a helpful error", function() {
+        expect(function(){
+          expect(Class).to.belongTo(Slacker);
+        }).to.fail("relationship expectation does not have a tableName");
+      });
+    });
+
+    context("when given a non-class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect('not a bookshelf model class').to.belongTo(School);
+        }).to.fail("relationship subject should be a bookshelf model class");
+      });
+    });
+  });
+
+  describe(".belongToManyMany", function() {
+    context("when given two related models", function() {
+      it("passes", function() {
+        expect(Class).to.belongToMany(Student);
+      });
+    });
+
+    context("when given two unrelated models", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Transcript).to.belongToMany(Class);
+        }).to.fail("model classes have no relation");
+      });
+    });
+
+    context("when given two models with a non-hasMany relation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Student).to.belongToMany(Transcript);
+        }).to.fail("expected a 'belongsToMany' relationship instead of 'hasOne'");
+      });
+    });
+
+    context("when given a class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect(Class).to.belongToMany('not a bookshelf model class');
+        }).to.fail("relationship expectation should be a bookshelf model class");
+      });
+    });
+
+    context("when related class does not have a table defined", function() {
+      it("raises a helpful error", function() {
+        expect(function(){
+          expect(Class).to.belongToMany(Slacker);
+        }).to.fail("relationship expectation does not have a tableName");
+      });
+    });
+
+    context("when given a non-class subject and a non-class expectation", function() {
+      it("raises an error", function() {
+        expect(function(){
+          expect('not a bookshelf model class').to.belongToMany(School);
         }).to.fail("relationship subject should be a bookshelf model class");
       });
     });

@@ -45,4 +45,16 @@ module.exports = function(chai, utils) {
   chai.Assertion.addMethod('haveOne', function(expected) {
     validateRelation.call(this, 'hasOne', expected);
   });
+
+  chai.Assertion.addMethod('haveMany', function(expected) {
+    validateRelation.call(this, 'hasMany', expected);
+  });
+
+  chai.Assertion.addMethod('belongTo', function(expected) {
+    validateRelation.call(this, 'belongsTo', expected);
+  });
+
+  chai.Assertion.addMethod('belongToMany', function(expected) {
+    validateRelation.call(this, 'belongsToMany', expected);
+  });
 };
