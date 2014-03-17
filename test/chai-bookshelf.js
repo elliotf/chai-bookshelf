@@ -225,7 +225,7 @@ describe("chai-bookshelf", function() {
     });
   });
 
-  describe(".belongToManyMany", function() {
+  describe(".belongToMany", function() {
     context("when given two related models", function() {
       it("passes", function() {
         expect(Class).to.belongToMany(Student);
