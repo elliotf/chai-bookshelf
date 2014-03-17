@@ -50,6 +50,9 @@ describe("chai-bookshelf", function() {
       }
     });
 
+    Slacker = db.Model.extend({
+    });
+
     Class = db.Model.extend({
       tableName: 'classes'
       , school: function() {
@@ -57,6 +60,9 @@ describe("chai-bookshelf", function() {
       }
       , student: function() {
         return this.belongsToMany(Student);
+      }
+      , mistake: function() {
+        return this.hasOne(Slacker);
       }
     });
 
@@ -73,18 +79,31 @@ describe("chai-bookshelf", function() {
 
     School = db.Model.extend({
       tableName: 'schools'
-      , student: function() {
+      , body: function() {
         return this.hasMany(Student);
       }
+      , class: function() {
+        return this.hasMany(Class);
+      }
+      , student_body_president: function() {
+        return this.belongsTo(Student);
+      }
+      , records: function() {
+        return this.belongsToMany(Transcript);
+      }
     });
-
-    Slacker = db.Model.extend({});
   });
 
   describe(".haveOne", function() {
     context("when given two related models", function() {
       it("passes", function() {
         expect(Student).to.haveOne(Transcript);
+      });
+
+      context("and an attrName is specified", function() {
+        it("is used instead of the singular form of the table name", function() {
+          expect(Class).to.haveOne(Slacker, 'mistake');
+        });
       });
     });
 
@@ -132,7 +151,13 @@ describe("chai-bookshelf", function() {
   describe(".haveMany", function() {
     context("when given two related models", function() {
       it("passes", function() {
-        expect(School).to.haveMany(Student);
+        expect(School).to.haveMany(Class);
+      });
+
+      context("and an attrName is specified", function() {
+        it("is used instead of the singular form of the table name", function() {
+          expect(School).to.haveMany(Student, 'body');
+        });
       });
     });
 
@@ -182,6 +207,12 @@ describe("chai-bookshelf", function() {
       it("passes", function() {
         expect(Class).to.belongTo(School);
       });
+
+      context("and an attrName is specified", function() {
+        it("is used instead of the singular form of the table name", function() {
+          expect(School).to.belongTo(Student, 'student_body_president');
+        });
+      });
     });
 
     context("when given two unrelated models", function() {
@@ -229,6 +260,12 @@ describe("chai-bookshelf", function() {
     context("when given two related models", function() {
       it("passes", function() {
         expect(Class).to.belongToMany(Student);
+      });
+
+      context("and an attrName is specified", function() {
+        it("is used instead of the singular form of the table name", function() {
+          expect(School).to.belongToMany(Transcript, 'records');
+        });
       });
     });
 
