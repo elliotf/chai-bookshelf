@@ -1,6 +1,6 @@
 var chai      = require('chai')
   , expect    = chai.expect
-  , subject   = require('../')
+  , subject   = require('../../')
   , Bookshelf = require('bookshelf')
   , inspect
   , db
@@ -13,7 +13,7 @@ var chai      = require('chai')
 
 chai.Assertion.includeStack = true;
 
-describe("chai-bookshelf", function() {
+describe("relations", function() {
   before(function() {
     chai.use(function (chai, utils) {
       inspect = utils.objDisplay;
