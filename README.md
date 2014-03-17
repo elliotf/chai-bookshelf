@@ -6,7 +6,9 @@ Make assertions on your [bookshelf.js](http://bookshelfjs.org) models.
 
 ## Install
 
-`npm install chai-bookshelf`
+Install via npm: `npm install chai-bookshelf`
+
+Note that it's handy to use the shortcut --save-dev: `npm install --save-dev chai-bookshelf`
 
 ## Using
 
@@ -15,9 +17,9 @@ Make assertions on your [bookshelf.js](http://bookshelfjs.org) models.
 
 ## Assertions
 
-Right now, only basic assertions on relations are supported.
+Right now, only basic assertions on relationships are supported.
 
-### Relations
+### Relationships
 
 Remove boiler plate from your code by making straightforward assertions
 
@@ -27,8 +29,6 @@ Supported Relationships include:
 * hasMany `expect(ClassA).to.haveMany(ClassB)`
 * belongsTo `expect(ClassA).to.belongTo(ClassB)`
 * belongsToMany `expect(ClassA).to.belongToMany(ClassB)`
-
-Note that "through" is not supported yet.
 
 #### Basic Example
 

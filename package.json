@@ -1,6 +1,6 @@
 {
   "name": "chai-bookshelf",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Chai assertions for bookshelf-based models",
   "main": "chai-bookshelf.js",
   "scripts": {
