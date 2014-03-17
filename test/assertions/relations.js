@@ -309,4 +309,33 @@ describe("relations", function() {
       });
     });
   });
+
+  describe("edge cases", function() {
+    context("when the attribute is a relationship to another model", function() {
+      var User, Page, Owner;
+
+      beforeEach(function() {
+        User = db.Model.extend({
+          tableName: 'users'
+        });
+
+        Owner = db.Model.extend({
+          tableName: 'owners'
+        });
+
+        Page = db.Model.extend({
+          tableName: 'pages'
+          , owner: function() {
+            return this.belongsTo(User);
+          }
+        });
+      });
+
+      it("raises an error", function() {
+        expect(function(){
+          expect(Page).to.belongTo(Owner);
+        }).to.fail("subject's 'owner' relationship points to another model");
+      });
+    });
+  });
 });

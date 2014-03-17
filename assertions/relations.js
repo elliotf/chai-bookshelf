@@ -39,10 +39,16 @@ module.exports = function(chai, utils) {
     );
 
     // assert on relationship type
-    var actualType = relationship.relatedData.type;
+    var details = relationship.relatedData;
     this.assert(
-      expectedType === actualType
-      , "expected a '" + expectedType + "' relationship instead of '" + actualType + "'"
+      expectedType === details.type
+      , "expected a '" + expectedType + "' relationship instead of '" + details.type + "'"
+    );
+
+    // make sure they're pointed to each other
+    this.assert(
+      expected === details.target
+      , "subject's '" + relationName + "' relationship points to another model"
     );
   }
 
