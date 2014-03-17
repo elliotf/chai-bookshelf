@@ -35,7 +35,7 @@ module.exports = function(chai, utils) {
     // assert that there is a relationship
     this.assert(
       relationship
-      , "model classes have no relation"
+      , "models have no relation"
     );
 
     // assert on relationship type

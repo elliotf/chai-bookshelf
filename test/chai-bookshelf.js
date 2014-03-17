@@ -111,7 +111,7 @@ describe("chai-bookshelf", function() {
       it("raises an error", function() {
         expect(function(){
           expect(Transcript).to.haveOne(Class);
-        }).to.fail("model classes have no relation");
+        }).to.fail("models have no relation");
       });
     });
 
@@ -165,7 +165,7 @@ describe("chai-bookshelf", function() {
       it("raises an error", function() {
         expect(function(){
           expect(Transcript).to.haveMany(Class);
-        }).to.fail("model classes have no relation");
+        }).to.fail("models have no relation");
       });
     });
 
@@ -219,7 +219,7 @@ describe("chai-bookshelf", function() {
       it("raises an error", function() {
         expect(function(){
           expect(Transcript).to.belongTo(Class);
-        }).to.fail("model classes have no relation");
+        }).to.fail("models have no relation");
       });
     });
 
@@ -273,7 +273,7 @@ describe("chai-bookshelf", function() {
       it("raises an error", function() {
         expect(function(){
           expect(Transcript).to.belongToMany(Class);
-        }).to.fail("model classes have no relation");
+        }).to.fail("models have no relation");
       });
     });
 
